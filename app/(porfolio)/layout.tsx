@@ -5,6 +5,11 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+
+import { SanityLive } from '@/sanity/lib/live';
+
 import '../globals.css';
 
 const geistSans = Geist({
@@ -28,7 +33,13 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          {children}
+          <SidebarProvider>
+            <SidebarInset>{children}</SidebarInset>
+
+            <AppSidebar side="right" />
+          </SidebarProvider>
+
+          <SanityLive />
         </body>
       </html>
     </ClerkProvider>

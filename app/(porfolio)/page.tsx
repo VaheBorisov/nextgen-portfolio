@@ -1,7 +1,9 @@
-export default function Home() {
+import { PortfolioContent } from '@/components/PortfolioContent';
+
+export default function Portfolio() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>portfolio</h1>
-    </div>
+    <main className="min-h-screen">
+      <PortfolioContent />
+    </main>
   );
 }
