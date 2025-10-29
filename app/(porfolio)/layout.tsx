@@ -5,12 +5,14 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import { AppSidebar } from '@/components/app-sidebar';
+import AppSidebar from '@/components/app-sidebar';
+import SidebarToggle from '@/components/SidebarToggle';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
 import { SanityLive } from '@/sanity/lib/live';
 
 import '../globals.css';
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,9 +39,16 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
             <SidebarInset>{children}</SidebarInset>
 
             <AppSidebar side="right" />
+
+            <SidebarToggle />
           </SidebarProvider>
 
           <SanityLive />
+
+          <Script
+            src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
+            strategy="afterInteractive"
+          />
         </body>
       </html>
     </ClerkProvider>
