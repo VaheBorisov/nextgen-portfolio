@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { PropsWithChildren } from 'react';
+import Script from 'next/script';
 
 import { ClerkProvider } from '@clerk/nextjs';
 
@@ -12,7 +13,6 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { SanityLive } from '@/sanity/lib/live';
 
 import '../globals.css';
-import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <SidebarProvider>
+          <SidebarProvider defaultOpen={false}>
             <SidebarInset>{children}</SidebarInset>
 
             <AppSidebar side="right" />
