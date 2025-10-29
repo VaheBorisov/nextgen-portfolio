@@ -3,6 +3,7 @@ import AboutSection from '@/components/sections/AboutSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
+import EducationSection from '@/components/sections/EducationSection';
 
 export default async function PortfolioContent() {
   return (
@@ -12,6 +13,7 @@ export default async function PortfolioContent() {
       <TestimonialsSection />
       <SkillsSection />
       <ExperienceSection />
+      <EducationSection />
     </main>
   );
 }
