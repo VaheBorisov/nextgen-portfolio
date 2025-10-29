@@ -7,6 +7,7 @@
 import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
+import { presentationTool } from 'sanity/presentation';
 
 import { RocketIcon } from '@sanity/icons';
 
@@ -27,6 +28,15 @@ export default defineConfig({
   schema,
   plugins: [
     structureTool({ structure, title: 'Content' }),
+    presentationTool({
+      previewUrl: {
+        initial: process.env.SANITY_STUDIO_PREVIEW_ORIGIN,
+        preview: '/',
+        previewMode: {
+          enable: '/api/draft-mode/enable',
+        },
+      },
+    }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion, title: 'GROQ' }),

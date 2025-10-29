@@ -11,7 +11,7 @@ const NAVIGATION_QUERY = defineQuery(`*[_type == "navigation"] | order(order asc
   isExternal
 }`);
 
-export async function FloatingDock() {
+export default async function FloatingDock() {
   const { data: navItems } = await sanityFetch({ query: NAVIGATION_QUERY });
 
   if (!navItems || navItems.length === 0) {
