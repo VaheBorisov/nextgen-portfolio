@@ -33,7 +33,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Vahe Borisov - Software Frontend Engineer',
   description:
-    'Portfolio of Vahe Borisov, a frontend engineer in Next.js, Typescript, and modern web technologies. Available for freelance projects and consulting.',
+    'Portfolio of Vahe Borisov, a frontend engineer in Next.js, Typescript, and modern web technologies. Available for freelance projects.',
 };
 
 export default async function RootLayout({ children }: Readonly<PropsWithChildren>) {
