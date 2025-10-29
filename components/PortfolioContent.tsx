@@ -2,6 +2,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import SkillsSection from '@/components/sections/SkillsSection';
+import ExperienceSection from '@/components/sections/ExperienceSection';
 
 export default async function PortfolioContent() {
   return (
@@ -10,6 +11,7 @@ export default async function PortfolioContent() {
       <AboutSection />
       <TestimonialsSection />
       <SkillsSection />
+      <ExperienceSection />
     </main>
   );
 }
