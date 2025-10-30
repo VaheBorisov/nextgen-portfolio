@@ -12,11 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
       - name: Install other dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
