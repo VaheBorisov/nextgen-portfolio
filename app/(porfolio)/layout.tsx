@@ -8,6 +8,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import { defineQuery } from 'next-sanity';
+
 import ThemeProvider from '@/components/ThemeProvider';
 import AppSidebar from '@/components/app-sidebar';
 import FloatingDock from '@/components/FloatingDock';
@@ -16,7 +18,9 @@ import DarkModeToggle from '@/components/DarkModeToggle';
 import DisableDraftMode from '@/components/DisableDraftMode';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
-import { SanityLive } from '@/sanity/lib/live';
+import { urlFor } from '@/sanity/lib/image';
+
+import { SanityLive, sanityFetch } from '@/sanity/lib/live';
 
 import '../globals.css';
 
@@ -30,11 +34,45 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Vahe Borisov - Software Frontend Engineer',
-  description:
-    'Portfolio of Vahe Borisov, a frontend engineer in Next.js, Typescript, and modern web technologies. Available for freelance projects.',
-};
+const SITE_SETTINGS_QUERY = defineQuery(`*[_id=="singleton-siteSettings"][0] {
+  siteTitle,
+  siteDescription,
+  siteKeywords,
+  siteLogo,
+  favicon,
+  ogImage,
+}`);
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: siteSettings } = await sanityFetch({ query: SITE_SETTINGS_QUERY });
+
+  const title = siteSettings?.siteTitle || 'Vahe Borisov - Software Frontend Engineer';
+  const description =
+    siteSettings?.siteDescription ||
+    'Portfolio of Vahe Borisov, a frontend engineer in Next.js, Typescript, and modern web technologies. Available for freelance projects.';
+
+  const keywords = siteSettings?.siteKeywords?.join(', ');
+  const ogImage = siteSettings?.ogImage?.asset
+    ? urlFor(siteSettings.ogImage).width(1200).height(630).url()
+    : undefined;
+
+  return {
+    title,
+    description,
+    ...(keywords && { keywords }),
+    openGraph: {
+      title,
+      description,
+      ...(ogImage && { images: [ogImage] }),
+    },
+    twitter: {
+      card: ogImage ? 'summary_large_image' : 'summary',
+      title,
+      description,
+      ...(ogImage && { images: [ogImage] }),
+    },
+  };
+}
 
 export default async function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
