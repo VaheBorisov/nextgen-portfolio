@@ -27,7 +27,7 @@ jobs:
 
       # 🟢 Install pnpm globally (must come BEFORE you use it)
       - name: Install pnpm
-        run: npm install -g pnpm@9
+        run: corepack enable && corepack prepare pnpm@10 --activate
 
       # 🟢 Install project dependencies
       - name: Install dependencies
