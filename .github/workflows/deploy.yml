@@ -14,39 +14,39 @@ jobs:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
     steps:
-      # 1️⃣ Checkout repository
+      # 1 Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
+          
+      # 2 Setup pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+         version: 10
 
-      # 2️⃣ Setup Node.js
+      # 3 Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
 
-      # 3️⃣ Setup pnpm
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      # 4️⃣ Install dependencies
+      # 4 Install dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 5️⃣ Install Vercel CLI **without taking 15 min** (using pnpm dlx)
+      # 5 Install Vercel CLI
       - name: Install Vercel CLI
         run: pnpm dlx vercel --version
 
-      # 6️⃣ Pull Vercel Environment Variables
+      # 6 Pull Vercel Environment Variables
       - name: Pull Vercel Environment Variables
         run: pnpm dlx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      # 7️⃣ Build project
+      # 7 Build project
       - name: Build project
         run: pnpm build
 
-      # 8️⃣ Deploy to Vercel
+      # 8 Deploy to Vercel
       - name: Deploy project
         run: pnpm dlx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
