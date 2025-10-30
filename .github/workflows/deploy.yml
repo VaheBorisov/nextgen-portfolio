@@ -18,23 +18,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 🟢 Setup Node.js first (specify version 22)
       - name: Setup Node.js (22.x)
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 10  # or match your local pnpm version
+      # 🟢 Install pnpm globally (must come BEFORE you use it)
+      - name: Install pnpm
+        run: npm install -g pnpm@9
 
+      # 🟢 Install project dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 🟢 Build your project
       - name: Build project
         run: pnpm build
 
+      # 🟢 Deploy to Vercel
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
