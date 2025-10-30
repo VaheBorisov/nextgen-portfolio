@@ -3,6 +3,7 @@ import type { PropsWithChildren } from 'react';
 import Script from 'next/script';
 import { draftMode } from 'next/headers';
 import { VisualEditing } from 'next-sanity/visual-editing';
+import { Analytics } from '@vercel/analytics/next';
 
 import { ClerkProvider } from '@clerk/nextjs';
 
@@ -114,6 +115,7 @@ export default async function RootLayout({ children }: Readonly<PropsWithChildre
               strategy="afterInteractive"
             />
           </ThemeProvider>
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
