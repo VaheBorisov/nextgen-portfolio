@@ -57,6 +57,7 @@ export default function WorldMap({ dots = [], lineColor = '#0ea5e9' }: MapProps)
           src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
           className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none"
           alt="world map showing global connectivity"
+          loading="lazy"
           height={495}
           width={1056}
           draggable={false}

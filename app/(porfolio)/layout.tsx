@@ -62,6 +62,8 @@ export async function generateMetadata(): Promise<Metadata> {
     description,
     ...(keywords && { keywords }),
     openGraph: {
+      type: 'website',
+      siteName: 'Vahe Borisov Portfolio',
       title,
       description,
       ...(ogImage && { images: [ogImage] }),

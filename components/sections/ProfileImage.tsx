@@ -35,8 +35,9 @@ export default function ProfileImage({ imageUrl, firstName, lastName }: ProfileI
         src={imageUrl}
         alt={`${firstName} ${lastName}`}
         fill
-        className="object-cover transition-transform duration-300 group-hover:scale-105"
         priority
+        fetchPriority="high"
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
       />
 
       {/* Online Badge */}
