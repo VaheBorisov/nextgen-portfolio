@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useSidebar } from '@/components/ui/sidebar';
 import type { CHAT_PROFILE_QUERYResult } from '@/sanity.types';
@@ -18,9 +19,14 @@ interface LazyChatProps {
 }
 
 export default function LazyChat({ profile }: LazyChatProps) {
+  const [mounted, setMounted] = useState(false);
   const { open } = useSidebar();
 
-  if (!open) return null;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !open) return null;
 
   return <Chat profile={profile} />;
 }
