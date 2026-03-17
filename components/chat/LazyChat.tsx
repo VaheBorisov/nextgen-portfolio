@@ -26,6 +26,16 @@ export default function LazyChat({ profile }: LazyChatProps) {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    if (document.querySelector('script[src*="chatkit.js"]')) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.platform.openai.com/deployments/chatkit/chatkit.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, [open]);
+
   if (!mounted || !open) return null;
 
   return <Chat profile={profile} />;

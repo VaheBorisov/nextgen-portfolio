@@ -41,6 +41,13 @@
     "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.1"
   },
+  "browserslist": [
+    "chrome >= 80",
+    "edge >= 80",
+    "firefox >= 80",
+    "safari >= 13.1",
+    "not ie 11"
+  ],
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
     "@tailwindcss/postcss": "^4",

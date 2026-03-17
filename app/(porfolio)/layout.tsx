@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import type { PropsWithChildren } from 'react';
-import Script from 'next/script';
 import { draftMode } from 'next/headers';
 import { VisualEditing } from 'next-sanity/visual-editing';
 import { Analytics } from '@vercel/analytics/next';
@@ -98,8 +97,6 @@ export default async function RootLayout({ children }: Readonly<PropsWithChildre
         <head>
           <link rel="preconnect" href="https://cdn.sanity.io" />
           <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-          <link rel="preconnect" href="https://clerk.vaheborisov.com" />
-          <link rel="dns-prefetch" href="https://cdn.platform.openai.com" />
           <script
             type="application/ld+json"
             // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data is static and safe
@@ -137,10 +134,6 @@ export default async function RootLayout({ children }: Readonly<PropsWithChildre
               </>
             )}
 
-            <Script
-              src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
-              strategy="lazyOnload"
-            />
           </ThemeProvider>
           <Analytics />
         </body>
