@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextGen Portfolio
+
+A modern, full-stack portfolio website built with Next.js, Sanity CMS, and an integrated AI chat assistant. Features dynamic content management, dark mode, interactive data visualizations, and a world map showcase.
+
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org) (App Router, React 19)
+- **CMS**: [Sanity](https://sanity.io) — headless CMS with live content editing
+- **Auth**: [Clerk](https://clerk.com) — authentication and user management
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com) + [Radix UI](https://radix-ui.com)
+- **AI Chat**: [@openai/chatkit-react](https://github.com/openai/openai-chatkit)
+- **Animations**: [Motion](https://motion.dev)
+- **Charts**: [Recharts](https://recharts.org)
+- **Icons**: [Tabler Icons](https://tabler-icons.io) + [Lucide](https://lucide.dev)
+- **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
+- **Linting/Formatting**: [Biome](https://biomejs.dev)
+
+## Features
+
+- Hero, About, Experience, Projects, Skills, Blog, Certifications, Achievements, Testimonials, Contact sections
+- Interactive skills chart and world map
+- AI-powered chat assistant
+- Dark/light mode with `next-themes`
+- Floating dock navigation
+- Sanity Studio at `/sanity`
+- Auto-generated sitemap and robots.txt
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- [pnpm](https://pnpm.io) 10+
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file in the root with the following variables:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+# Sanity
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your_sanity_token
+ 
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+ 
+# OpenAI (for AI chat)
+OPENAI_API_KEY=your_openai_api_key
+```
 
-## Learn More
+### Development
 
-To learn more about Next.js, take a look at the following resources:
+Opens at [http://localhost:3001](http://localhost:3001).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Sanity Studio
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The Sanity Studio is available at [http://localhost:3001/sanity](http://localhost:3001/sanity).
 
-## Deploy on Vercel
+To regenerate TypeScript types from the Sanity schema:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm typegen
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start development server on port 3001 |
+| `pnpm build` | Build for production |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run Biome linter |
+| `pnpm format` | Auto-format with Biome |
+| `pnpm typegen` | Regenerate Sanity TypeScript types |
+
+## Project Structure
+
+```
+├── app/
+│   ├── (porfolio)/      # Main portfolio pages
+│   ├── (sanity)/        # Sanity Studio
+│   └── api/             # API routes (AI chat, etc.)
+├── components/
+│   ├── sections/        # Portfolio section components
+│   ├── ui/              # Reusable UI primitives
+│   └── chat/            # AI chat components
+├── sanity/
+│   ├── schemaTypes/     # Sanity content schemas
+│   └── lib/             # Sanity client and helpers
+└── hooks/               # Custom React hooks
+```
+
+## Deployment
+
+Deploy on [Vercel](https://vercel.com) for the best experience:
+
+```bash
+vercel
+```
+
+Make sure to set all environment variables in your Vercel project settings.
