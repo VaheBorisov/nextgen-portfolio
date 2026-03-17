@@ -1,6 +1,7 @@
 import { defineQuery } from 'next-sanity';
+import dynamic from 'next/dynamic';
 
-import SkillsChart from '@/components/sections/SkillsChart';
+const SkillsChart = dynamic(() => import('@/components/sections/SkillsChart'));
 
 import { sanityFetch } from '@/sanity/lib/live';
 

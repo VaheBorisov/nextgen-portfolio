@@ -43,6 +43,8 @@ export default function ContactForm() {
 
       {status.type && (
         <div
+          role="alert"
+          aria-live="polite"
           className={`mb-4 p-3 rounded-lg text-sm ${
             status.type === 'success'
               ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
@@ -113,6 +115,16 @@ export default function ContactForm() {
             disabled={isPending}
           />
         </div>
+
+        {/* Honeypot field — hidden from users, filled only by bots */}
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          aria-hidden="true"
+          autoComplete="off"
+          className="hidden"
+        />
 
         <button
           type="submit"

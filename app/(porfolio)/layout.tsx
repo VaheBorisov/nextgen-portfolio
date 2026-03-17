@@ -77,10 +77,35 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Vahe Borisov',
+  url: 'https://vaheborisov.com',
+  jobTitle: 'Frontend Software Engineer',
+  description:
+    'Portfolio of Vahe Borisov, a frontend engineer specializing in Next.js, TypeScript, and modern web technologies.',
+  sameAs: [
+    'https://github.com/vaheborisov',
+    'https://linkedin.com/in/vaheborisov',
+  ],
+};
+
 export default async function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <link rel="preconnect" href="https://cdn.sanity.io" />
+          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+          <link rel="preconnect" href="https://clerk.vaheborisov.com" />
+          <link rel="dns-prefetch" href="https://cdn.platform.openai.com" />
+          <script
+            type="application/ld+json"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data is static and safe
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <ThemeProvider
             attribute="class"
@@ -114,7 +139,7 @@ export default async function RootLayout({ children }: Readonly<PropsWithChildre
 
             <Script
               src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
           </ThemeProvider>
           <Analytics />

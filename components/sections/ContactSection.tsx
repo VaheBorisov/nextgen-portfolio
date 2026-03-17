@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { defineQuery } from 'next-sanity';
 
+import dynamic from 'next/dynamic';
 import ContactForm from './ContactForm';
-import WorldMapSection from '@/components/sections/WorldMapSection';
+
+const WorldMapSection = dynamic(() => import('@/components/sections/WorldMapSection'));
 
 import { sanityFetch } from '@/sanity/lib/live';
 
