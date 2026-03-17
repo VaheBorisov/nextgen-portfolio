@@ -2,7 +2,7 @@ import { defineQuery } from 'next-sanity';
 
 import { sanityFetch } from '@/sanity/lib/live';
 
-import Chat from '@/components/chat/Chat';
+import LazyChat from '@/components/chat/LazyChat';
 import SidebarToggle from '@/components/SidebarToggle';
 
 const CHAT_PROFILE_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
@@ -33,7 +33,7 @@ export default async function ChatWrapper() {
         <SidebarToggle />
       </div>
 
-      <Chat profile={profile} />
+      <LazyChat profile={profile} />
     </div>
   );
 }

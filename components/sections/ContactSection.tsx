@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { defineQuery } from 'next-sanity';
 
-import ContactForm from './ContactForm';
 import WorldMapSection from '@/components/sections/WorldMapSection';
+import ContactForm from '@/components/sections/ContactForm';
 
 import { sanityFetch } from '@/sanity/lib/live';
 

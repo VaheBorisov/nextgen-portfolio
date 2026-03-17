@@ -18,10 +18,10 @@ export default function DockIcon({ item, isVertical, onItemClick }: DockIconProp
     const isHorizontal = direction === 'horizontal';
     return (
       <div
-        className={`absolute px-3 py-1.5 ${isHorizontal ? 'rounded-xl' : 'rounded-lg'} bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-white/40 dark:border-white/20 ${isHorizontal ? 'text-xs md:text-sm' : 'text-sm'} font-medium text-neutral-800 dark:text-neutral-200 whitespace-nowrap opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 pointer-events-none shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] ${
+        className={`absolute px-3 py-1.5 ${isHorizontal ? 'rounded-xl' : 'rounded-lg'} bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-white/40 dark:border-white/20 ${isHorizontal ? 'text-xs md:text-sm' : 'text-sm'} font-medium text-neutral-800 dark:text-neutral-200 whitespace-nowrap opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:scale-100 transition-all duration-300 pointer-events-none shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] ${
           isHorizontal
-            ? '-top-9 md:-top-12 left-1/2 -translate-x-1/2 group-hover:-translate-y-2'
-            : 'right-14 top-1/2 -translate-y-1/2 group-hover:-translate-x-1'
+            ? '-top-9 md:-top-12 left-1/2 -translate-x-1/2 group-hover:-translate-y-2 group-focus-within:-translate-y-2'
+            : 'right-14 top-1/2 -translate-y-1/2 group-hover:-translate-x-1 group-focus-within:-translate-x-1'
         }`}
       >
         {item.title}

@@ -36,6 +36,7 @@ export default function ProfileImage({ imageUrl, firstName, lastName }: ProfileI
         alt={`${firstName} ${lastName}`}
         fill
         priority
+        sizes="600px"
         fetchPriority="high"
         className="object-cover transition-transform duration-300 group-hover:scale-105"
       />
